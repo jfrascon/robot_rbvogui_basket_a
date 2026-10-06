@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-  This file publishes the basket layout A model of the `robot_rbvogui_basket_layout_a` package.
+  This file publishes the basket layout A model of the `robot_rbvogui_basket_a` package.
   The robot name inside the URDF stays `rbvogui_basket_layout_a`.
 
   This model extends the common RB-VOGUI platform with a basket sensor layout.
@@ -15,11 +15,11 @@
   <!-- INCLUDES -->
   <!-- ===================================================================== -->
 
-  <xacro:include filename="$(find robot_rbvogui_common)/urdf/common.xacro"/>
+  <xacro:include filename="$(find robot_rbvogui_base)/urdf/common.xacro"/>
 
   <!-- This module extends the common RB-VOGUI platform with the basket sensor layout. -->
   <xacro:include filename="$(find robotics_description)/urdf/sensors/all_sensors_macro.xacro"/>
-  <xacro:include filename="$(find robot_rbvogui_common)/urdf/basket/basket_macros.xacro"/>
+  <xacro:include filename="$(find robot_rbvogui_base)/urdf/basket/basket_macros.xacro"/>
 
   <!-- ===================================================================== -->
   <!-- ARGS -->

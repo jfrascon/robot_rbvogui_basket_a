@@ -8,7 +8,7 @@ from conftest import run_bash
 
 def test_basket_layout_a_xacro_expands_to_valid_urdf(tmp_path: Path) -> None:
     urdf_path = tmp_path / 'basket_layout_a.urdf'
-    xacro_path = PACKAGE_DIR / 'urdf' / 'model_basket_layout_a.xacro'
+    xacro_path = PACKAGE_DIR / 'urdf' / 'robot_rbvogui_basket_a.xacro'
 
     result = run_bash(f'xacro "{xacro_path}" > "{urdf_path}" && check_urdf "{urdf_path}"')
     output = result.stdout + result.stderr
@@ -45,7 +45,7 @@ def test_basket_layout_a_xacro_expands_to_valid_urdf(tmp_path: Path) -> None:
 
 def test_basket_layout_a_simulation_xacro_expands_to_valid_urdf(tmp_path: Path) -> None:
     urdf_path = tmp_path / 'basket_layout_a_simulation.urdf'
-    xacro_path = PACKAGE_DIR / 'urdf' / 'model_basket_layout_a.xacro'
+    xacro_path = PACKAGE_DIR / 'urdf' / 'robot_rbvogui_basket_a.xacro'
     sim_path = PACKAGE_DIR / 'config' / 'default_simulation.yaml'
 
     result = run_bash(

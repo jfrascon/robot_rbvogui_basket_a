@@ -93,7 +93,7 @@ section-order = [
 ]
 # Sort imported names alphabetically instead of grouping names by capitalization.
 order-by-type = false
-known-first-party = ["conftest", "robot_rbvogui_basket_layout_a"]
+known-first-party = ["conftest", "robot_rbvogui_basket_a"]
 known-third-party = [
   "ament_index_python",
   "launch",

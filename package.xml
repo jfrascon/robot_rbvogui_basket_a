@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>robot_rbvogui_basket_layout_a</name>
+  <name>robot_rbvogui_basket_a</name>
   <version>1.0.0</version>
   <description>
     Basket layout A robot description, launch files, and deployment configuration for the RB-VOGUI
     robot family
   </description>
-  <maintainer email="juan.rascon@eurecat.org">Juan Francisco Rascon Crespo</maintainer>
+  <maintainer email="jfrascon@gmail.com">Juan Francisco Rascon Crespo</maintainer>
   <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   <exec_depend>ground_vehicle_kinematics</exec_depend>
-  <exec_depend>robot_rbvogui_common</exec_depend>
+  <exec_depend>robot_rbvogui_base</exec_depend>
   <exec_depend>robotics_description</exec_depend>
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>

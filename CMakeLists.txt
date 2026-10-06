@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(robot_rbvogui_basket_layout_a)
+project(robot_rbvogui_basket_a)
 
 find_package(ament_cmake REQUIRED)
 install(
@@ -9,7 +9,7 @@ install(
   PATTERN "*.pyc" EXCLUDE)
 
 install(
-  PROGRAMS scripts/debug_model_basket_layout_a.sh
+  PROGRAMS scripts/debug_robot_rbvogui_basket_a.sh
   DESTINATION share/${PROJECT_NAME}/scripts)
 
 install(FILES README.md LICENSE DESTINATION share/${PROJECT_NAME})

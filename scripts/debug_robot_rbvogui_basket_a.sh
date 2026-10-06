@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-package_share="$(ros2 pkg prefix robot_rbvogui_basket_layout_a)/share/robot_rbvogui_basket_layout_a"
+package_share="$(ros2 pkg prefix robot_rbvogui_basket_a)/share/robot_rbvogui_basket_a"
 
 # The launch arguments below are defaults passed explicitly by this script.
 # To override any of them, append the replacement argument after the script name.
 # Example:
-#   debug_model_basket_layout_a.sh rviz_enabled:=False gzgui_enabled:=False
-ros2 launch robot_rbvogui_basket_layout_a debug_model_basket_layout_a.launch.py \
+#   debug_robot_rbvogui_basket_a.sh rviz_enabled:=False gzgui_enabled:=False
+ros2 launch robot_rbvogui_basket_a debug_robot_rbvogui_basket_a.launch.py \
     robot_name:=rbv0 \
     robot_params_file:="${package_share}/config/default_params.yaml" \
     robot_params_file_allow_substs:=True \
