@@ -106,3 +106,7 @@ ros2 launch robot_rbvogui_base render_robot_urdf.launch.py \
   robot_urdf_file:=/tmp/rbvogui_basket_layout_a.urdf
 check_urdf /tmp/rbvogui_basket_layout_a.urdf
 ```
+
+## Parent model
+
+This package builds on [robot_rbvogui_base](https://github.com/jfrascon/robot_rbvogui_base.git)
