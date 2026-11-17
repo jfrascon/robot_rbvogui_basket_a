@@ -44,12 +44,23 @@ rosdep install --from-paths "${WORKSPACE}" --ignore-src -r -y
 
 ## Build
 
-Build the common package and the basket layout A package from the workspace root.
+Build the basket layout A package and its workspace dependencies from the workspace root.
 
 ```bash
 cd "${WORKSPACE}"
-colcon build --merge-install --packages-select robot_rbvogui_base robot_rbvogui_basket_a
+colcon build --merge-install --packages-up-to robot_rbvogui_basket_a
 source install/setup.bash
+```
+
+## Tests
+
+Build and run the tests for this package and its workspace dependencies from the workspace root.
+
+```bash
+cd "${WORKSPACE}"
+colcon build --merge-install --packages-up-to robot_rbvogui_basket_a
+colcon test --merge-install --packages-up-to robot_rbvogui_basket_a
+colcon test-result --test-result-base build --verbose
 ```
 
 ## Visualize the basket layout A model
@@ -60,8 +71,7 @@ the configured sensors.
 The debug launch file is useful for quickly checking that the model still works after a change and for testing changes to the basket or sensors.
 
 ```bash
-robot_rbvogui_basket_a_share="$(ros2 pkg prefix robot_rbvogui_basket_a)/share/robot_rbvogui_basket_a"
-"${robot_rbvogui_basket_a_share}/scripts/debug_robot_rbvogui_basket_a.sh"
+"${WORKSPACE}/robot_rbvogui_basket_a/scripts/debug_robot_rbvogui_basket_a.sh"
 ```
 
 You can pass the script any argument accepted by `debug_robot_rbvogui_basket_a.launch.py`. To see the available arguments, run:
@@ -73,36 +83,23 @@ ros2 launch robot_rbvogui_basket_a debug_robot_rbvogui_basket_a.launch.py --show
 For example, run the simulation without the Gazebo GUI or RViz:
 
 ```bash
-robot_rbvogui_basket_a_share="$(ros2 pkg prefix robot_rbvogui_basket_a)/share/robot_rbvogui_basket_a"
-"${robot_rbvogui_basket_a_share}/scripts/debug_robot_rbvogui_basket_a.sh" \
+"${WORKSPACE}/robot_rbvogui_basket_a/scripts/debug_robot_rbvogui_basket_a.sh" \
   rviz_enabled:=False \
   gzgui_enabled:=False
 ```
 
 ![RB-VOGUI basket layout A debug simulation](doc/images/robot_rbvogui_basket_layout_a_debug.png)
 
-## Tests
-
-Build and run the common and basket layout A package tests from the workspace root.
-
-```bash
-cd "${WORKSPACE}"
-colcon build --merge-install --packages-select robot_rbvogui_base robot_rbvogui_basket_a
-colcon test --merge-install --packages-select robot_rbvogui_base robot_rbvogui_basket_a
-colcon test-result --test-result-base build --verbose
-```
-
-### Inspect the generated URDF
+## Inspect the generated URDF
 
 You can also render the basket layout A model and validate the resulting URDF directly with `check_urdf`.
 
 ```bash
-robot_rbvogui_basket_a_share="$(ros2 pkg prefix robot_rbvogui_basket_a)/share/robot_rbvogui_basket_a"
 ros2 launch robot_rbvogui_base render_robot_urdf.launch.py \
   robot_name:=rbv0 \
-  robot_xacro_file:="${robot_rbvogui_basket_a_share}/urdf/robot_rbvogui_basket_a.xacro" \
-  robot_xacro_args_file:="${robot_rbvogui_basket_a_share}/config/default_xacro_args.yaml" \
-  robot_sim_file:="${robot_rbvogui_basket_a_share}/config/default_simulation.yaml" \
+  robot_xacro_file:="${WORKSPACE}/robot_rbvogui_basket_a/urdf/robot_rbvogui_basket_a.xacro" \
+  robot_xacro_args_file:="${WORKSPACE}/robot_rbvogui_basket_a/config/default_xacro_args.yaml" \
+  robot_sim_file:="${WORKSPACE}/robot_rbvogui_basket_a/config/default_simulation.yaml" \
   robot_urdf_file:=/tmp/rbvogui_basket_layout_a.urdf
 check_urdf /tmp/rbvogui_basket_layout_a.urdf
 ```

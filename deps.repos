@@ -2,7 +2,7 @@ repositories:
     robot_rbvogui_base:
         type: git
         url: https://github.com/jfrascon/robot_rbvogui_base.git
-        version: ce921ef2236f7fa5fa2fe8325ddda24c7008de1f
+        version: 07e0cda1f54596d39301f801a1f034f1bc61bf6c
         #exclude: [] # list of repos files inside repository_path to exclude (optional)
     ros2_launch_helpers:
         type: git
