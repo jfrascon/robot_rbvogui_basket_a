@@ -34,12 +34,13 @@ This package provides its own RViz configuration because its sensors differ from
 `robot_rbvogui_basket_a` depends on ROS 2 packages available from the APT package repositories. Install those dependencies with `rosdep`. It also depends on packages that are not available from APT. Their source repositories are listed in [`deps.repos`](deps.repos).
 
 ```bash
-export WORKSPACE=<path-to-your-workspace>
-mkdir -p "${WORKSPACE}"
-git clone https://github.com/jfrascon/robot_rbvogui_basket_a.git "${WORKSPACE}/robot_rbvogui_basket_a"
-vcs import "${WORKSPACE}" < "${WORKSPACE}/robot_rbvogui_basket_a/deps.repos"
+export WORKSPACE="/path/to/your/workspace"
+mkdir -p "${WORKSPACE}/src"
+git clone https://github.com/jfrascon/robot_rbvogui_basket_a.git "${WORKSPACE}/src/robot_rbvogui_basket_a"
+vcs import "${WORKSPACE}/src" < "${WORKSPACE}/src/robot_rbvogui_basket_a/deps.repos"
+
 source /opt/ros/jazzy/setup.bash
-rosdep install --from-paths "${WORKSPACE}" --ignore-src -r -y
+rosdep install --from-paths "${WORKSPACE}/src" --ignore-src -r -y
 ```
 
 ## Build
@@ -71,7 +72,7 @@ the configured sensors.
 The debug launch file is useful for quickly checking that the model still works after a change and for testing changes to the basket or sensors.
 
 ```bash
-"${WORKSPACE}/robot_rbvogui_basket_a/scripts/debug_robot_rbvogui_basket_a.sh"
+"${WORKSPACE}/src/robot_rbvogui_basket_a/scripts/debug_robot_rbvogui_basket_a.sh"
 ```
 
 You can pass the script any argument accepted by `debug_robot_rbvogui_basket_a.launch.py`. To see the available arguments, run:
@@ -83,7 +84,7 @@ ros2 launch robot_rbvogui_basket_a debug_robot_rbvogui_basket_a.launch.py --show
 For example, run the simulation without the Gazebo GUI or RViz:
 
 ```bash
-"${WORKSPACE}/robot_rbvogui_basket_a/scripts/debug_robot_rbvogui_basket_a.sh" \
+"${WORKSPACE}/src/robot_rbvogui_basket_a/scripts/debug_robot_rbvogui_basket_a.sh" \
   rviz_enabled:=False \
   gzgui_enabled:=False
 ```
@@ -97,9 +98,9 @@ You can also render the basket layout A model and validate the resulting URDF di
 ```bash
 ros2 launch robot_rbvogui_base render_robot_urdf.launch.py \
   robot_name:=rbv0 \
-  robot_xacro_file:="${WORKSPACE}/robot_rbvogui_basket_a/urdf/robot_rbvogui_basket_a.xacro" \
-  robot_xacro_args_file:="${WORKSPACE}/robot_rbvogui_basket_a/config/default_xacro_args.yaml" \
-  robot_sim_file:="${WORKSPACE}/robot_rbvogui_basket_a/config/default_simulation.yaml" \
+  robot_xacro_file:="${WORKSPACE}/src/robot_rbvogui_basket_a/urdf/robot_rbvogui_basket_a.xacro" \
+  robot_xacro_args_file:="${WORKSPACE}/src/robot_rbvogui_basket_a/config/default_xacro_args.yaml" \
+  robot_sim_file:="${WORKSPACE}/src/robot_rbvogui_basket_a/config/default_simulation.yaml" \
   robot_urdf_file:=/tmp/rbvogui_basket_layout_a.urdf
 check_urdf /tmp/rbvogui_basket_layout_a.urdf
 ```
